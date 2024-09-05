@@ -1,24 +1,17 @@
 
 import './App.css';
+import Employee from './components/Employee';
 
 function App() {
+  console.log("we r about to list the employee")
+  let showEmployee = true;
+
+  
   return (
-    <div className="App">
-      <header className="App-header">
-       
-        <p>
-           
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+     
+      {showEmployee ? <Employee name="meet"/> : null}
+    </>
   );
 }
 
