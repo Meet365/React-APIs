@@ -1,6 +1,7 @@
 import "./App.css";
 import Employee from "./components/Employee";
-
+import AddEmployee from "./components/AddEmployee";
+import EditEmployee from "./components/EditEmployee";
 import { useState } from "react";
 import {v4 as uuidv4} from 'uuid';
 
@@ -10,6 +11,7 @@ function App() {
 
   const [role, setRole] = useState("dev");
   const [employee, setEmployee] = useState([
+
     {
       id:1,
       name: "meet",
@@ -59,11 +61,37 @@ function App() {
             if (id === employee.id){
               return {img :employee.img, name: newName, role: newRole};
             }
+            console.log(employee)
             return employee
           });
           setEmployee(updateemployee);
           
   }
+
+  //adding new employee
+
+  //it basically does create a new employee card with name , role, image and then using the setEMployee useState it will set the values of that useState
+  //with addition to the new Value 
+  
+  function Newemployee(name, role, img){
+    const newEmp={
+      id: uuidv4(),
+      name: name,
+      role: role,
+      img: img
+    }
+    setEmployee([...employee, newEmp])
+  }
+
+  // function NewEmployee(name,role,img){
+  //    let emp = {
+  //     id: uuidv4(), 
+  //     name: name,
+  //     role: role,
+  //     img:img,
+  //   }
+  //   setEmployee(...employee,emp)
+  // }
 
   return (
     <>
@@ -78,7 +106,10 @@ function App() {
         {showEmployee ? (
           <>
             <div className="flex flex-wrap justify-center">
-              {employee.map((employee) => {
+              { employee.map((employee) => {
+                // here we created a new instance of th ecomponent EditEmploye and given it to a varibale and used it further with the EMployyee component to make it 
+                //nore diversed
+                const newedit = <EditEmployee name={employee.name} role={employee.role} editemployee={editemployee} id={employee.id} />
                 return (
                   <Employee
                     key={employee.id}
@@ -86,13 +117,17 @@ function App() {
                     name={employee.name}
                     role={employee.role}
                     img={employee.img}
-                    editemployee={editemployee}
+                    editemployee={newedit}
                   />
                 );
               })}
             </div>
+            <AddEmployee  newemp={Newemployee}/> 
+
+           
           </>
         ) : null}
+
       </div>
     </>
   );
