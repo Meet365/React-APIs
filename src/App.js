@@ -4,6 +4,7 @@ import AddEmployee from "./components/AddEmployee";
 import EditEmployee from "./components/EditEmployee";
 import { useState } from "react";
 import {v4 as uuidv4} from 'uuid';
+import NavBar from "./components/NavBar";
 
 function App() {
   console.log("we r about to list the employee");
@@ -95,6 +96,7 @@ function App() {
 
   return (
     <>
+      <NavBar />
       <div className="App ">
         <input
           type="text"
